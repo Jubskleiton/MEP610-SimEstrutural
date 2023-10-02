@@ -1,8 +1,10 @@
 class No:
-    def __int__(self, x, y, conhecido=False, dx=None, dy=None):
-        self.x = x
-        self.y = y
-        self.pos = (x, y)
-        self.conhecido = conhecido
-        self.dx =dx
-        self.dy =dy
+    def __init__(self, pos, conhecido=(False, False), gl_dx=None, gl_dy=None):
+        self.x = pos[0]
+        self.y = pos[1]
+        self.pos = pos
+        self.gl_x_conhecido = conhecido[0]
+        self.gl_y_conhecido = conhecido[1]
+        self.gl_conhecido = conhecido
+        self.gl_dx = gl_dx
+        self.gl_dy = gl_dy
