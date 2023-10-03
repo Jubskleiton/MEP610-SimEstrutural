@@ -1,9 +1,6 @@
 import pygame
 
 
-no_selected = 0
-user_text = ""
-
 pygame.init()
 clock = pygame.time.Clock()
 
