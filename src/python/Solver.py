@@ -61,6 +61,10 @@ def solver():
             Kg[LM[0:4, el - 1], LM[0:4, el - 1]] += Ke[0:4, 0:4, el - 1]
 
     #Solução do deslocamento (X)
-    X(Grau de liberdade desconhecidos) = (Kg(Gl desconhecidos até Gl desconhecidos)/Forcas) - Kg(Gl desconhecidos até Gl desconhecidos)*X(Gl conhecidos)
+    X_alpha = np.linalg.solve(Kg[alpha - 1][:, alpha - 1], F[alpha -1] - np.dot(Kg[alpha - 1][:, beta - 1], X[beta -1]))
 
+    # Cálculo das reações de apoio
+    F_beta = np.dot(Kg[beta - 1][:, alpha -1],X[alpha -1]) + np.dot(Kg[beta -1][:, beta -1],X[beta -1]);
+    
+    
     pass
