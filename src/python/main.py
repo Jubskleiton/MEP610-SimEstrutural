@@ -1,5 +1,5 @@
 import pygame
-from No import *
+
 
 no_selected = 0
 user_text = ""
@@ -17,7 +17,7 @@ while True:
             pygame.quit()
             exit()
     if pygame.mouse.get_pressed()[0]:
-        no = No(mouse_pos)
+        print(mouse_pos)
     # pygame.draw.line(display, "white", feixe.origem, [feixe.origem[0] + x, feixe.origem[1] + y])
     pygame.draw.circle(display, "white", mouse_pos, 2)
 

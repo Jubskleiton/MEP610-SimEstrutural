@@ -5,37 +5,49 @@ def main(page: ft.Page):
     def button_click(e):
         match dropdown.value:
             case "Mola":
-                pass
+                if x1() and y1() and x2() and y2() and k() and (not checkbox_u1() or input_u1()) and (not checkbox_v1() or input_v1()) and (not checkbox_u2() or input_u2()) and (not checkbox_v2() or input_v2()):
+                    print("pass")
+                else:
+                    print("falta")
             case "Viga":
-                pass
+                if x1() and y1() and x2() and y2() and (not checkbox_u1() or input_u1()) and (not checkbox_v1() or input_v1()) and (not checkbox_θ1() or input_θ1()) and (not checkbox_u2() or input_u2()) and (not checkbox_v2() or input_v2()) and (not checkbox_θ2() or input_θ2()) and l() and ei():
+                    print("pass")
+                else:
+                    print("falta")
             case "Barra":
-                pass
+                if x1() and y1() and x2() and y2() and (not checkbox_u1() or input_u1()) and (not checkbox_v1() or input_v1()) and (not checkbox_u2() or input_u2()) and (not checkbox_v2() or input_v2()) and l() and ae():
+                    print("pass")
+                else:
+                    print("falta")
             case "Portico":
-                pass
+                if x1() and y1() and x2() and y2() and (not checkbox_u1() or input_u1()) and (not checkbox_v1() or input_v1()) and (not checkbox_θ1() or input_θ1()) and (not checkbox_u2() or input_u2()) and (not checkbox_v2() or input_v2()) and (not checkbox_θ2() or input_θ2()) and l() and ei():
+                    print("pass")
+                else:
+                    print("falta")
 
     def check_box_change(e):
-        if check_input.controls[0].controls[0].value:
-            check_input.controls[0].controls[1].visible = True
+        if checkbox_u1():
+            check_input.controls[0].controls[1].visible = True   # input u1
         else:
             check_input.controls[0].controls[1].visible = False
-        if check_input.controls[1].controls[0].value:
-            check_input.controls[1].controls[1].visible = True
+        if checkbox_v1():
+            check_input.controls[1].controls[1].visible = True   # input v1
         else:
             check_input.controls[1].controls[1].visible = False
-        if check_input.controls[2].controls[0].value:
-            check_input.controls[2].controls[1].visible = True
+        if checkbox_θ1():
+            check_input.controls[2].controls[1].visible = True   # input θ1
         else:
             check_input.controls[2].controls[1].visible = False
-        if check_input.controls[3].controls[0].value:
-            check_input.controls[3].controls[1].visible = True
+        if checkbox_u2():
+            check_input.controls[3].controls[1].visible = True   # input u2
         else:
             check_input.controls[3].controls[1].visible = False
-        if check_input.controls[4].controls[0].value:
-            check_input.controls[4].controls[1].visible = True
+        if checkbox_v2():
+            check_input.controls[4].controls[1].visible = True   # input v2
         else:
             check_input.controls[4].controls[1].visible = False
-        if check_input.controls[5].controls[0].value:
-            check_input.controls[5].controls[1].visible = True
+        if checkbox_θ2():
+            check_input.controls[5].controls[1].visible = True   # input θ2
         else:
             check_input.controls[5].controls[1].visible = False
         page.update()
@@ -109,6 +121,29 @@ def main(page: ft.Page):
                              ])
     # Done button
     button = ft.ElevatedButton(text="Add", on_click=button_click)
+
+    x1 = lambda: input_field.controls[0].controls[0].value
+    y1 = lambda: input_field.controls[0].controls[1].value
+    x2 = lambda: input_field.controls[1].controls[0].value
+    y2 = lambda: input_field.controls[1].controls[1].value
+    k = lambda: input_field.controls[2].controls[0].value
+    l = lambda: input_field.controls[2].controls[1].value
+    ei = lambda: input_field.controls[2].controls[2].value
+    ae = lambda: input_field.controls[2].controls[3].value
+
+    checkbox_u1 = lambda: check_input.controls[0].controls[0].value
+    checkbox_v1 = lambda: check_input.controls[1].controls[0].value
+    checkbox_θ1 = lambda: check_input.controls[2].controls[0].value
+    checkbox_u2 = lambda: check_input.controls[3].controls[0].value
+    checkbox_v2 = lambda: check_input.controls[4].controls[0].value
+    checkbox_θ2 = lambda: check_input.controls[5].controls[0].value
+
+    input_u1 = lambda: check_input.controls[0].controls[1].value
+    input_v1 = lambda: check_input.controls[1].controls[1].value
+    input_θ1 = lambda: check_input.controls[2].controls[1].value
+    input_u2 = lambda: check_input.controls[3].controls[1].value
+    input_v2 = lambda: check_input.controls[4].controls[1].value
+    input_θ2 = lambda: check_input.controls[5].controls[1].value
 
     # Main page layout
     page.add(dropdown,
