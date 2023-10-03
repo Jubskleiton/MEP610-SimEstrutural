@@ -1,7 +1,7 @@
 import flet as ft
 
 
-def main(page: ft.Page):
+def inp_page(page: ft.Page):
     def button_click(e):
         match dropdown.value:
             case "Mola":
@@ -153,4 +153,4 @@ def main(page: ft.Page):
              button)
 
 
-ft.app(target=main)
+ft.app(target=inp_page)

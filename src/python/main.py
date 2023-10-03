@@ -1,10 +1,13 @@
 import pygame
+from input_page import *
 
+
+ft.app(target=inp_page)
 
 pygame.init()
 clock = pygame.time.Clock()
 
-display = pygame.display.set_mode((800, 400))
+display = pygame.display.set_mode((600, 400))
 
 while True:
     display.fill("black")
