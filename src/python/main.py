@@ -1,25 +1,54 @@
-import pygame
-from input_page import *
+import numpy as np
+import input_page
+from Elemento import *
+
+elementos, nos = input_page.run()
+
+gls_n_k = []
+gls_k = []
+
+for _, no in nos.items():
+    for gl in no.gl:
+        if isinstance(gl, Gl):
+            if gl.known:
+                try:
+                    gls_k.index(gl)
+                except ValueError:
+                    gls_k.append(gl)
+            else:
+                try:
+                    gls_n_k.index(gl)
+                except ValueError:
+                    gls_n_k.append(gl)
 
 
-ft.app(target=inp_page)
+gls = []
+gls.extend(gls_n_k)
+gls.extend(gls_k)
 
-pygame.init()
-clock = pygame.time.Clock()
+mat_localizacao = []
+for el in elementos:
+    temp = [gls.index(el.no1.gl[0]), gls.index(el.no1.gl[1])]
+    if el.el_type == "Viga" or el.el_type == "Portico":
+        temp.append(gls.index(el.no1.gl[2]))
+    temp.append(gls.index(el.no2.gl[0]))
+    temp.append(gls.index(el.no2.gl[1]))
+    if el.el_type == "Viga" or el.el_type == "Portico":
+        temp.append(gls.index(el.no2.gl[2]))
+    mat_localizacao.append(temp.copy())
+    temp.clear()
+print(mat_localizacao)
 
-display = pygame.display.set_mode((600, 400))
+matriz_rigidez_global = np.zeros((len(gls), len(gls)))
+for el in elementos:
+    if el.el_type == "Mola" or el.el_type == "Barra":
+        for x, l in enumerate([gls.index(el.no1.gl[0]), gls.index(el.no1.gl[1]), gls.index(el.no2.gl[0]), gls.index(el.no2.gl[1])]):
+            for y, c in enumerate([gls.index(el.no1.gl[0]), gls.index(el.no1.gl[1]), gls.index(el.no2.gl[0]), gls.index(el.no2.gl[1])]):
+                matriz_rigidez_global[l, c] += el.matriz_local()[x, y]
+    elif el.el_type == "Viga" or el.el_type == "Portico":
+        for x, l in enumerate([gls.index(el.no1.gl[0]), gls.index(el.no1.gl[1]), gls.index(el.no1.gl[2]), gls.index(el.no2.gl[0]), gls.index(el.no2.gl[1]), gls.index(el.no2.gl[2])]):
+            for y, c in enumerate([gls.index(el.no1.gl[0]), gls.index(el.no1.gl[1]), gls.index(el.no1.gl[2]), gls.index(el.no2.gl[0]), gls.index(el.no2.gl[1]), gls.index(el.no2.gl[2])]):
+                matriz_rigidez_global[l, c] += el.matriz_local()[x, y]
 
-while True:
-    display.fill("black")
-    mouse_pos = pygame.mouse.get_pos()
-    for evento in pygame.event.get():
-        if evento.type == pygame.QUIT:
-            pygame.quit()
-            exit()
-    if pygame.mouse.get_pressed()[0]:
-        print(mouse_pos)
-    # pygame.draw.line(display, "white", feixe.origem, [feixe.origem[0] + x, feixe.origem[1] + y])
-    pygame.draw.circle(display, "white", mouse_pos, 2)
-
-    pygame.display.update()
-    clock.tick(60)
+print(matriz_rigidez_global)
+pass
