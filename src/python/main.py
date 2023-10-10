@@ -79,4 +79,5 @@ for el in elementos:
 
 desl_alpha = np.linalg.lstsq(matriz_rigidez_global[:len(gls_alpha), :len(gls_alpha)], (forces[:len(gls_alpha)] - np.dot(matriz_rigidez_global[:len(gls_alpha), len(gls_alpha):len(gls_beta) + len(gls_alpha)], desl_beta)), rcond=None)[0]
 
+
 pass
