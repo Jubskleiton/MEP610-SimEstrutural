@@ -23,11 +23,10 @@ def inp_page(page: ft.Page):
                     else:
                         theta = math.pi/2
 
-                    gl1 = Gl(x1(), checkbox_u1(), "x", dt_value=input_u1() if checkbox_u1() else None, force=input_fu1() if checkbox_fu1() else None, fix=apoio_u1)
-                    gl2 = Gl(y1(), checkbox_v1(), "y", dt_value=input_v1() if checkbox_v1() else None, force=input_fv1() if checkbox_fv1() else None, fix=apoio_v1)
-                    gl3 = Gl(x2(), checkbox_u2(), "x", dt_value=input_u2() if checkbox_u2() else None, force=input_fu2() if checkbox_fu2() else None, fix=apoio_u2)
-                    gl4 = Gl(y2(), checkbox_v2(), "y", dt_value=input_v2() if checkbox_v2() else None, force=input_fv2() if checkbox_fv2() else None, fix=apoio_v2)
-
+                    gl1 = Gl(x1(), checkbox_u1(), "x", dt_value=float(input_u1()) if checkbox_u1() else None, force=float(input_fu1()) if checkbox_fu1() else None, force_known=checkbox_fu1, fix=apoio_u1)
+                    gl2 = Gl(y1(), checkbox_v1(), "y", dt_value=float(input_v1()) if checkbox_v1() else None, force=float(input_fv1()) if checkbox_fv1() else None, force_known=checkbox_fv1, fix=apoio_v1)
+                    gl3 = Gl(x2(), checkbox_u2(), "x", dt_value=float(input_u2()) if checkbox_u2() else None, force=float(input_fu2()) if checkbox_fu2() else None, force_known=checkbox_fu2, fix=apoio_u2)
+                    gl4 = Gl(y2(), checkbox_v2(), "y", dt_value=float(input_v2()) if checkbox_v2() else None, force=float(input_fv2()) if checkbox_fv2() else None, force_known=checkbox_fv2, fix=apoio_v2)
                     # verifica se o grau ja existe (broken)
                     # graus_de_liberdade[x1()] = gl1
                     # graus_de_liberdade[y1()] = gl2
@@ -52,12 +51,12 @@ def inp_page(page: ft.Page):
                             theta = 2 * math.pi + math.atan2((float(y2()) - float(y1())), (float(x2()) - float(x1())))
                     else:
                         theta = math.pi / 2
-                    gl1 = Gl(x1(), checkbox_u1(), "x", input_u1() if checkbox_u1() else 0, force=input_fu1() if checkbox_fu1() else None, fix=apoio_u1)
-                    gl2 = Gl(y1(), checkbox_v1(), "y", input_v1() if checkbox_v1() else 0, force=input_fu1() if checkbox_fv1() else None, fix=apoio_v1)
-                    gl3 = Gl(x2(), checkbox_u2(), "x", input_u2() if checkbox_u2() else 0, force=input_fu1() if checkbox_fu2() else None, fix=apoio_u2)
-                    gl4 = Gl(y2(), checkbox_v2(), "y", input_v2() if checkbox_v2() else 0, force=input_fu1() if checkbox_fv2() else None, fix=apoio_v2)
-                    gl5 = Gl(0, checkbox_θ1(), "θ", input_θ1() if checkbox_θ1() else 0, fix=apoio_θ1)
-                    gl6 = Gl(0, checkbox_θ2(), "θ", input_θ2() if checkbox_θ2() else 0, fix=apoio_θ2)
+                    gl1 = Gl(x1(), checkbox_u1(), "x", dt_value=float(input_u1()) if checkbox_u1() else 0, force=float(input_fu1()) if checkbox_fu1() else None, force_known=checkbox_fu1, fix=apoio_u1)
+                    gl2 = Gl(y1(), checkbox_v1(), "y", dt_value=float(input_v1()) if checkbox_v1() else 0, force=float(input_fv1()) if checkbox_fv1() else None, force_known=checkbox_fv1, fix=apoio_v1)
+                    gl3 = Gl(x2(), checkbox_u2(), "x", dt_value=float(input_u2()) if checkbox_u2() else 0, force=float(input_fu2()) if checkbox_fu2() else None, force_known=checkbox_fu2, fix=apoio_u2)
+                    gl4 = Gl(y2(), checkbox_v2(), "y", dt_value=float(input_v2()) if checkbox_v2() else 0, force=float(input_fv2()) if checkbox_fv2() else None, force_known=checkbox_fv2, fix=apoio_v2)
+                    gl5 = Gl(0, checkbox_θ1(), "θ", dt_value=float(input_θ1()) if checkbox_θ1() else 0, force_known=input_tθ1, fix=apoio_θ1)
+                    gl6 = Gl(0, checkbox_θ2(), "θ", dt_value=float(input_θ2()) if checkbox_θ2() else 0, force_known=input_tθ2, fix=apoio_θ2)
 
                     if isinstance(nos.get(x1() + "," + y1()), No):
                         if isinstance(nos.get(x1() + "," + y1()).gl[2], Gl):
@@ -93,10 +92,10 @@ def inp_page(page: ft.Page):
                     else:
                         theta = math.pi / 2
 
-                    gl1 = Gl(x1(), checkbox_u1(), "x", input_u1() if checkbox_u1() else 0, force=input_fu1() if checkbox_fu1() else None, fix=apoio_u1)
-                    gl2 = Gl(y1(), checkbox_v1(), "y", input_v1() if checkbox_v1() else 0, force=input_fv1() if checkbox_fv1() else None, fix=apoio_v1)
-                    gl3 = Gl(x2(), checkbox_u2(), "x", input_u2() if checkbox_u2() else 0, force=input_fu2() if checkbox_fu2() else None, fix=apoio_u2)
-                    gl4 = Gl(y2(), checkbox_v2(), "y", input_v2() if checkbox_v2() else 0, force=input_fv2() if checkbox_fv2() else None, fix=apoio_v2)
+                    gl1 = Gl(x1(), checkbox_u1(), "x", dt_value=float(input_u1()) if checkbox_u1() else 0, force=float(input_fu1()) if checkbox_fu1() else None, force_known=checkbox_fu1, fix=apoio_u1)
+                    gl2 = Gl(y1(), checkbox_v1(), "y", dt_value=float(input_v1()) if checkbox_v1() else 0, force=float(input_fv1()) if checkbox_fv1() else None, force_known=checkbox_fv1, fix=apoio_v1)
+                    gl3 = Gl(x2(), checkbox_u2(), "x", dt_value=float(input_u2()) if checkbox_u2() else 0, force=float(input_fu2()) if checkbox_fu2() else None, force_known=checkbox_fu2, fix=apoio_u2)
+                    gl4 = Gl(y2(), checkbox_v2(), "y", dt_value=float(input_v2()) if checkbox_v2() else 0, force=float(input_fv2()) if checkbox_fv2() else None, force_known=checkbox_fv2, fix=apoio_v2)
 
                     no1 = No(gl1, gl2) if not isinstance(nos.get(x1() + "," + y1()), No) else nos.get(x1() + "," + y1())
                     no2 = No(gl3, gl4) if not isinstance(nos.get(x2() + "," + y2()), No) else nos.get(x2() + "," + y2())
@@ -117,10 +116,10 @@ def inp_page(page: ft.Page):
                     else:
                         theta = math.pi / 2
 
-                    gl1 = Gl(x1(), checkbox_u1(), "x", input_u1() if checkbox_u1() else 0, force=input_fu1() if checkbox_fu1() else None, fix=apoio_u1)
-                    gl2 = Gl(y1(), checkbox_v1(), "y", input_v1() if checkbox_v1() else 0, force=input_fv1() if checkbox_fu1() else None, fix=apoio_v1)
-                    gl3 = Gl(x2(), checkbox_u2(), "x", input_u2() if checkbox_u2() else 0, force=input_fu2() if checkbox_fu1() else None, fix=apoio_u2)
-                    gl4 = Gl(y2(), checkbox_v2(), "y", input_v2() if checkbox_v2() else 0, force=input_fv2() if checkbox_fu1() else None, fix=apoio_v2)
+                    gl1 = Gl(x1(), checkbox_u1(), "x", dt_value=float(input_u1()) if checkbox_u1() else 0, force=float(input_fu1()) if checkbox_fu1() else None, force_known=checkbox_fu1, fix=apoio_u1)
+                    gl2 = Gl(y1(), checkbox_v1(), "y", dt_value=float(input_v1()) if checkbox_v1() else 0, force=float(input_fv1()) if checkbox_fv1() else None, force_known=checkbox_fv1, fix=apoio_v1)
+                    gl3 = Gl(x2(), checkbox_u2(), "x", dt_value=float(input_u2()) if checkbox_u2() else 0, force=float(input_fu2()) if checkbox_fu2() else None, force_known=checkbox_fu2, fix=apoio_u2)
+                    gl4 = Gl(y2(), checkbox_v2(), "y", dt_value=float(input_v2()) if checkbox_v2() else 0, force=float(input_fv2()) if checkbox_fv2() else None, force_known=checkbox_fv2, fix=apoio_v2)
 
                     no1 = No(gl1, gl2) if not isinstance(nos.get(x1() + "," + y1()), No) else nos.get(x1() + "," + y1())
                     no2 = No(gl3, gl4) if not isinstance(nos.get(x2() + "," + y2()), No) else nos.get(x2() + "," + y2())
