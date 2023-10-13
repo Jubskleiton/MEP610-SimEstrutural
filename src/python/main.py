@@ -1,5 +1,4 @@
-import numpy as np
-
+import show_window
 import input_page
 from Elemento import *
 
@@ -38,10 +37,6 @@ gls.extend(gls_beta)
 desl = []
 desl.extend(desl_alpha)
 desl.extend(desl_beta)
-
-desl_alpha = np.array(desl_alpha)
-desl_beta = np.array(desl_beta)
-
 desl = np.array(desl)
 
 forces = []
@@ -77,7 +72,10 @@ for el in elementos:
             for y, c in enumerate([gls.index(el.no1.gl[0]), gls.index(el.no1.gl[1]), gls.index(el.no1.gl[2]), gls.index(el.no2.gl[0]), gls.index(el.no2.gl[1]), gls.index(el.no2.gl[2])]):
                 matriz_rigidez_global[l, c] += el.matriz_local()[x, y]
 
-desl_alpha = np.linalg.lstsq(matriz_rigidez_global[:len(gls_alpha), :len(gls_alpha)], (forces[:len(gls_alpha)] - np.dot(matriz_rigidez_global[:len(gls_alpha), len(gls_alpha):len(gls_beta) + len(gls_alpha)], desl_beta)), rcond=None)[0]
+desl[:len(gls_alpha)] = np.linalg.lstsq(matriz_rigidez_global[:len(gls_alpha), :len(gls_alpha)], (forces[:len(gls_alpha)] - np.dot(matriz_rigidez_global[:len(gls_alpha), len(gls_alpha):len(gls_beta) + len(gls_alpha)], desl[len(gls_alpha):])), rcond=None)[0]
+forces[len(gls_alpha):len(gls_alpha)+len(gls_beta)] = np.dot(matriz_rigidez_global[len(gls_alpha):len(gls_beta) + len(gls_alpha), :len(gls_alpha)], desl[:len(gls_alpha)]) + np.dot(matriz_rigidez_global[len(gls_alpha):len(gls_alpha)+len(gls_beta), len(gls_alpha):len(gls_alpha)+len(gls_beta)], desl[len(gls_alpha):len(gls_alpha)+len(gls_beta)])
 
+print(desl)
+print(forces)
 
-pass
+show_window.show(elementos, desl, gls)

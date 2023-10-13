@@ -66,6 +66,5 @@ class Elemento:
                                 [-self.phi * self.n * self.n, self.phi * self.m * self.n, self.lmbda * self.n, self.phi * self.n * self.n, -self.phi * self.m * self.n, self.lmbda * self.n],
                                 [self.phi * self.m * self.n, -self.phi * self.m * self.m, -self.lmbda * self.n, -self.phi * self.m * self.n, self.phi * self.m * self.m, -self.lmbda * self.m],
                                 [-self.lmbda * self.n, self.lmbda * self.m, self.rho, self.lmbda * self.n, -self.lmbda * self.m, 2 * self.rho]])
-        print(self.ke)
         return np.round(self.ke, decimals=4)
 
