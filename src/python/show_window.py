@@ -6,8 +6,8 @@ pygame.RESIZABLE = True
 
 
 def show(elements: [Elemento], dislocation, gls):
-    scale = 100
-    desl_scale = 1
+    scale = 10
+    disl_scale = 1
 
     pygame.init()
     clock = pygame.time.Clock()
@@ -23,17 +23,24 @@ def show(elements: [Elemento], dislocation, gls):
                 exit()
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_w:
-                    desl_scale += 1
+                    disl_scale += 1
+                    print(disl_scale)
                 if evento.key == pygame.K_s:
-                    desl_scale -= 1
-                print(desl_scale)
+                    disl_scale -= 1
+                    print(disl_scale)
+                if evento.key == pygame.K_d:
+                    scale += 1
+                    print(scale)
+                if evento.key == pygame.K_a:
+                    scale -= 1
+                    print(scale)
         if pygame.mouse.get_pressed()[0]:
             print(mouse_pos)
         # pygame.draw.circle(display, "white", mouse_pos, 2)
 
         draw_elements(display, elements, scale)
 
-        draw_elements(display, elements, scale, ds=dislocation, gls=gls, desl_scale=desl_scale)
+        draw_elements(display, elements, scale, ds=dislocation, gls=gls, desl_scale=disl_scale)
 
         pygame.display.update()
         clock.tick(60)
