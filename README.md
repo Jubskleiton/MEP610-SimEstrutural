@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Este projeto é um simulador estrutural da metria MEL-610.
+Este projeto é um simulador estrutural da metria MEP-610.
 
 ## Instruções de Uso
 
